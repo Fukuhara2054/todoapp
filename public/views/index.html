@@ -1,242 +1,248 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../stylesheets/style.css" />
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="../stylesheets/style.css" />
 
-    <title>Todoアプリ</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Content here -->
-    </div>
+  <title>Todoアプリ</title>
+</head>
+<body>
+  <div class="container">
+    <!-- Content here -->
+  </div>
 
-    <h1>Todoアプリ</h1>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#exampleModal"
-    >
-      + タスクを追加
-    </button>
+  <h1>Todoアプリ</h1>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    + タスクを追加
+  </button>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">タスク登録</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <!-- アラートの表示内容-->
-          <div class="modal-body">
-            <form action="">
-              <div class="form-group">
-                <label for="">タスク</label>
-                <input class="form-control" type="text" /><br />
-              </div>
-              <div class="form-group">
-                <label for="">期限</label>
-                <input class="form-control" type="text" /><br />
-              </div>
-              <label for="">カテゴリー</label>
-              <select class="custom-select">
-                <option selected>勉強</option>
-                <option value="1">勉強</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              キャンセル
-            </button>
-            <button type="button" class="btn btn-primary">登録</button>
-          </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">タスク登録</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-    </div>
-    <!-- ここからタスクのリストに代わっていく-->
-    <div class="row">
-      <div class="col-sm-8">
-        <!-- 縦の幅を中央にするため-->
-        <div class="a">
-          <label for=""> 犬の散歩</label>
-          <span>2022-05-04</span>
+        <!-- アラートの表示内容-->
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <label for="">タスク</label>
+              <input class="form-control" type="text" /><br />
+            </div>
+            <div class="form-group">
+              <label for="">期限</label>
+              <input class="form-control" type="text" /><br />
+            </div>
+            <label for="">カテゴリー</label>
+            <select class="custom-select">
+              <option selected>勉強</option>
+              <option value="1">勉強</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </form>
         </div>
-      </div>
-      <div class="col-sm-2 btn">
-        <button
-        type="button"
-        class="btn btn-outline-primary"
-        data-toggle="modal"
-        data-target="#exampleModal2"
-      >
-        更新
-      </button>
-      </div>
-      
-      <div class="col-sm-2 btn">
-        <button
-        type="button"
-        class="btn btn-outline-danger"
-        data-toggle="modal"
-        data-target="#exampleModal3"
-      >
-        削除
-      </button>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            キャンセル
+          </button>
+          <button type="button" class="btn btn-primary">登録</button>
+        </div>
       </div>
     </div>
   </div>
-    <!--          ここから更新のモーダル-->
-    <div
-      class="modal fade"
-      id="exampleModal2"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+  <!-- ここからタスクのリストに代わっていく-->
+  <div class="row">
+        <ul id="task-contents" >
+          <div>
+              
           </div>
-          <div class="modal-body">
-            <form action="">
-              <div class="form-group">
-                <label for="">タスク</label>
-                <input class="form-control" type="text" /><br />
-              </div>
-              <div class="form-group">
-                <label for="">期限</label>
-                <input class="form-control" type="text" /><br />
-              </div>
-              <label for="">カテゴリー</label>
-              <select class="custom-select">
-                <option selected>勉強</option>
-                <option value="1">勉強</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+          <li> 
+            <span class="b" ></span>
+            <div class="col-sm-8 task">
+              <span style="font-size: 25px;"> 犬の散歩</span>
+              <span style="font-size: 20px;">2022-05-04</span>
+            </div>
+        
+              <button
+              type="button"
+              class="btn btn-outline-primary col-sm-1"
+              data-toggle="modal"
+              data-target="#exampleModal2"
+            >
+              更新
+            </button>
+            <span></span>
+              <button
+              type="button"
+              class="btn btn-outline-danger col-sm-1"
+              data-toggle="modal"
+              data-target="#exampleModal3"
+            >
+              削除
+            </button>
+            
+          </li>
+          
+          
 
-              <label for="">ステータス</label>
-              <select class="custom-select">
-                <option selected>進行中</option>
-                <option value="1">進行中</option>
-                <option value="2">一時停止</option>
-                <option value="3">やめた</option>
-              </select>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              キャンセル
-            </button>
-            <button type="button" class="btn btn-primary">更新</button>
-          </div>
+        </ul>
+    </div>
+</div>
+  <!--          ここから更新のモーダル-->
+  <div
+    class="modal fade"
+    id="exampleModal2"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <label for="">タスク</label>
+              <input class="form-control" type="text" /><br />
+            </div>
+            <div class="form-group">
+              <label for="">期限</label>
+              <input class="form-control" type="text" /><br />
+            </div>
+            <label for="">カテゴリー</label>
+            <select class="custom-select">
+              <option selected>勉強</option>
+              <option value="1">勉強</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+
+            <label for="">ステータス</label>
+            <select class="custom-select">
+              <option selected>進行中</option>
+              <option value="1">進行中</option>
+              <option value="2">一時停止</option>
+              <option value="3">やめた</option>
+            </select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            キャンセル
+          </button>
+          <button type="button" class="btn btn-primary">更新</button>
         </div>
       </div>
     </div>
-    <!-- ここから削除のモーダル-->
-    <div
-      class="modal fade"
-      id="exampleModal3"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <label for="">犬の散歩</label>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              キャンセル
-            </button>
-            <button type="button" class="btn btn-primary">更新</button>
-          </div>
+  </div>
+  <!-- ここから削除のモーダル-->
+  <div
+    class="modal fade"
+    id="exampleModal3"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="">犬の散歩</label>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            キャンセル
+          </button>
+          <button type="button" class="btn btn-primary">更新</button>
         </div>
       </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+</body>
 </html>
