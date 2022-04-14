@@ -1,5 +1,6 @@
 var express = require("express");
-const items = require("../../src/items");
+const items = require("../../src/items.js");
+const tasks = require("../../src/tasks/create.js");
 
 var router = express.Router();
 
@@ -13,6 +14,11 @@ router.get("/items", function (req, res, next) {
 router.get("/items/:id", function (req, res, next) {
   const item = items.getItem(req.params.id);
   res.send(item);
+});
+
+router.post("/tasks", function (req, res, next) {
+  const postTasks = tasks.postTasks(req.body);
+  res.send(postTasks);
 });
 
 module.exports = router;

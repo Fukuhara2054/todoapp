@@ -58,33 +58,35 @@
         </div>
         <!-- アラートの表示内容-->
         <div class="modal-body">
-          <form action="">
-            <div class="form-group">
+          <form id="create-form"  method="POST" >
+            <div class="form-group" >
               <label for="">タスク</label>
-              <input class="form-control" type="text" /><br />
+              <input class="form-control" type="text" name="taskName" /><br />
             </div>
-            <div class="form-group">
+            <div  class="form-group">
               <label for="">期限</label>
-              <input class="form-control" type="text" /><br />
+              <input class="form-control" type="text" name="deadline"/><br />
             </div>
-            <label for="">カテゴリー</label>
-            <select class="custom-select">
-              <option selected>勉強</option>
-              <option value="1">勉強</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <div  class="form-group">
+              <label for="">カテゴリー</label>
+              <select class="custom-select" name="category">
+                <option selected >勉強</option>
+                <option value="1">勉強</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <div  class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                キャンセル
+              </button>
+              <button id="create-task" type="button" class="btn btn-primary" >登録</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-          >
-            キャンセル
-          </button>
-          <button type="button" class="btn btn-primary">登録</button>
         </div>
       </div>
     </div>
@@ -96,8 +98,8 @@
           <li> 
             <span class="b" ></span>
             <div class="col-sm-8 task">
-              <span style="font-size: 25px;"> 犬の散歩</span>
-              <span style="font-size: 20px;">2022-05-04</span>
+              <span style="font-size: 25px;"> </span>
+              <span style="font-size: 20px;"></span>
             </div>
         
               <button
@@ -222,7 +224,9 @@
     </div>
   </div>
   <!-- Optional JavaScript -->
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../javascripts/index.js"></script>
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -238,5 +242,31 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"
   ></script>
+  <script>
+    $("#create-task").on("click", async function(){
+      //
+      const requestData = {
+        taskName: $("#create-form input[name=taskName]").val(),
+        deadline: $("#create-form input[name=deadline]").val(),
+        category: $("#create-form select[name=category]").val(),
+      };
+      //
+      const response = await httpPost(
+        "//" + window.location.host + "/api/tasks",
+        requestData
+      );
+      window.location.reload();
+    })
+  </script>
+  <script>
+    $(async function () {
+      //jsonを叩いている
+      const data = await httpGet("//" + window.location.host + "/api/items");
+      const list = data.map((item) => {
+        return `<li>${item.id}</li>`;
+      });
+      $("ul#news-contents").append(list);
+    });
+  </script>
 </body>
 </html>
