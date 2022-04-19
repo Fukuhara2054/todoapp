@@ -1,5 +1,5 @@
 const mysql = require("mysql2/promise");
-const config = require("../config.js");
+const config = require("../config");
 /**
  * getList
  * 商品一覧を返却する処理
@@ -13,9 +13,10 @@ getListItem = async function () {
     //データベースの接続をしている
     connection = await mysql.createConnection(config.dbSetting);
     //sqlをここに書く
-    const sql = "SELECT * FROM ` t_task`";
+    const sql =
+      " SELECT ` t_task`.id, ` t_task`.category_id, ` m_category`.category_name, ` t_task`.task_name, ` t_task`.deadline, ` t_task`.task_status, ` t_task`.updated_at, ` t_task`.created_at FROM ` t_task` LEFT JOIN ` m_category` ON ` t_task`.category_id = ` m_category`.id;";
     const [rows, fields] = await connection.query(sql);
-    console.log(fields);
+
     return rows;
   } catch (eer) {
     console.log(eer);
@@ -35,4 +36,3 @@ getItem = function (id) {
 };
 
 exports.getListItem = getListItem;
-exports.getItem = getItem;

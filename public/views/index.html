@@ -56,6 +56,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <script src="../javascripts/index.js"></script>
         <!-- アラートの表示内容-->
         <div class="modal-body">
           <form id="create-form"  method="POST" >
@@ -76,17 +77,17 @@
                 <option value="3">Three</option>
               </select>
             </div>
-            <div  class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                キャンセル
-              </button>
-              <button id="create-task" type="button" class="btn btn-primary" >登録</button>
-            </div>
           </form>
+          <div  class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              キャンセル
+            </button>
+            <button id="create-task" type="button" class="btn btn-primary" >登録</button>
+          </div>
         </div>
       </div>
     </div>
@@ -95,31 +96,6 @@
   <div class="row">
         <ul id="task-contents" >
 
-          <li> 
-            <span class="b" ></span>
-            <div class="col-sm-8 task">
-              <span style="font-size: 25px;"> </span>
-              <span style="font-size: 20px;"></span>
-            </div>
-        
-              <button
-              type="button"
-              class="btn btn-outline-primary col-sm-1"
-              data-toggle="modal"
-              data-target="#exampleModal2"
-            >
-              更新
-            </button>
-            <span></span>
-              <button
-              type="button"
-              class="btn btn-outline-danger col-sm-1"
-              data-toggle="modal"
-              data-target="#exampleModal3"
-            >
-              削除
-            </button>
-          </li>
         </ul>
     </div>
 </div>
@@ -226,7 +202,7 @@
   <!-- Optional JavaScript -->
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="../javascripts/index.js"></script>
+
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -259,14 +235,44 @@
     })
   </script>
   <script>
+    
     $(async function () {
       //jsonを叩いている
       const data = await httpGet("//" + window.location.host + "/api/items");
       const list = data.map((item) => {
-        return `<li>${item.id}</li>`;
+        return `<li>
+          <span class="b" ></span>
+          <div class="col-sm-8 task">
+          <span style="font-size": 25px;>${item.task_name}</span>
+          <span style="font-size: 20px;">${item.deadline}</span>
+        </div>
+          <button
+            id="update-button"
+            date-id=${item.id}
+              type="button"
+              class="btn btn-outline-primary col-sm-1"
+              data-toggle="modal"
+              data-target="#exampleModal2"
+            >
+              更新
+            </button>
+          <button
+              id="delete-button"
+              date-id=${item.task_name}
+              type="button"
+              class="btn btn-outline-danger col-sm-1"
+              data-toggle="modal"
+              data-target="#exampleModal3"
+            >
+              削除
+            </button>
+          </li>`;
       });
-      $("ul#news-contents").append(list);
+      $("ul#task-contents").append(list);
     });
+  </script>
+  <script>
+    
   </script>
 </body>
 </html>
