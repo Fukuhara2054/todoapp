@@ -122,7 +122,7 @@
         </div>
         <div class="modal-body">
           <form id="update-form">
-            <input type=”hidden” name=”id”>
+            <input type="hidden" name=”id”>
             <div class="form-group">
               <label for="">タスク</label>
               <input class="form-control" name="task" type="text" /><br />
@@ -249,7 +249,7 @@
           <span style="font-size: 20px;">${item.deadline}</span>
         </div>
           <button
-            date-updateid=${item.id}
+            data-id=${item.id}
               type="button"
               class="btn btn-outline-primary col-sm-1 update-button"
               data-toggle="modal"
@@ -259,7 +259,7 @@
             </button>
           <button
               
-              date-id=${item.task_name}
+              data-id=${item.task_name}
               type="button"
               class="btn btn-outline-danger col-sm-1 delete-button"
               data-toggle="modal"
@@ -274,15 +274,20 @@
   </script>
   <script>
     $(document).on("click", ".update-button", async function (){
-      const updateid = $(this).data("updateid");
-      console.log(updateid);
-      const response = await httpGet("//" + window.location.host + `/api/items/${updateid}`);
+      const id = $(this).data("id");
+      const response = await httpGet("//" + window.location.host + `/api/items/${id}`);
+      //ここが出力できない
       console.log(response);
       //日付
+      const date = new Date(response[0].deadline);
+      const year = date.getFullyear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const deadlineVal = `${year}-${month}-${day}`;
       //初期値をセット
       $("#update-form input[name=id]").val(response[0].id);
       $("#update-form input[name=task]").val(response[0].task_name);
-      //$("#update-form input[name=deadline]").val(deadlineVal);
+      $("#update-form input[name=deadline]").val(deadlineVal);
       $("#update-form select[name=cotegory]").val(response[0].category_id);
       $("#update-form select[name=stutas]").val(response[0].task_stutas);
     });
