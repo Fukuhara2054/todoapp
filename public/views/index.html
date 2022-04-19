@@ -94,8 +94,7 @@
   </div>
   <!-- ここからタスクのリストに代わっていく-->
   <div class="row">
-        <ul id="task-contents" >
-
+        <ul id="task-contents">
         </ul>
     </div>
 </div>
@@ -122,30 +121,33 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form id="update-form">
+            <input type=”hidden” name=”id”>
             <div class="form-group">
               <label for="">タスク</label>
-              <input class="form-control" type="text" /><br />
+              <input class="form-control" name="task" type="text" /><br />
             </div>
             <div class="form-group">
               <label for="">期限</label>
-              <input class="form-control" type="text" /><br />
+              <input class="form-control" type="text" name="deadline"><br />
             </div>
-            <label for="">カテゴリー</label>
-            <select class="custom-select">
-              <option selected>勉強</option>
-              <option value="1">勉強</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-
-            <label for="">ステータス</label>
-            <select class="custom-select">
-              <option selected>進行中</option>
-              <option value="1">進行中</option>
-              <option value="2">一時停止</option>
-              <option value="3">やめた</option>
-            </select>
+            <div class="form-group">
+              <label for="">カテゴリー</label>
+              <select class="custom-select " name="category">
+                <option value="1" selected>勉強</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            
+              <div class="form-group">
+              <label for="">ステータス</label>
+              <select class="custom-select " name="status">
+                <option value="1" selected>進行中</option>
+                <option value="2">一時停止</option>
+                <option value="3">やめた</option>
+              </select>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -156,7 +158,7 @@
           >
             キャンセル
           </button>
-          <button type="button" class="btn btn-primary">更新</button>
+          <button id="update-task" type="button" class="btn btn-primary">更新</button>
         </div>
       </div>
     </div>
@@ -247,20 +249,19 @@
           <span style="font-size: 20px;">${item.deadline}</span>
         </div>
           <button
-            id="update-button"
-            date-id=${item.id}
+            date-updateid=${item.id}
               type="button"
-              class="btn btn-outline-primary col-sm-1"
+              class="btn btn-outline-primary col-sm-1 update-button"
               data-toggle="modal"
               data-target="#exampleModal2"
             >
               更新
             </button>
           <button
-              id="delete-button"
+              
               date-id=${item.task_name}
               type="button"
-              class="btn btn-outline-danger col-sm-1"
+              class="btn btn-outline-danger col-sm-1 delete-button"
               data-toggle="modal"
               data-target="#exampleModal3"
             >
@@ -272,7 +273,19 @@
     });
   </script>
   <script>
-    
+    $(document).on("click", ".update-button", async function (){
+      const updateid = $(this).data("updateid");
+      console.log(updateid);
+      const response = await httpGet("//" + window.location.host + `/api/items/${updateid}`);
+      console.log(response);
+      //日付
+      //初期値をセット
+      $("#update-form input[name=id]").val(response[0].id);
+      $("#update-form input[name=task]").val(response[0].task_name);
+      //$("#update-form input[name=deadline]").val(deadlineVal);
+      $("#update-form select[name=cotegory]").val(response[0].category_id);
+      $("#update-form select[name=stutas]").val(response[0].task_stutas);
+    });
   </script>
 </body>
 </html>
