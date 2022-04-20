@@ -289,29 +289,35 @@
       const deadlineVal = `${year}-${month}-${day}`;
       //初期値をセット
       $("#update-form input[name=id]").val(response[0].id);
+      //console.log($("#update-form input[name=id]").val());
       $("#update-form input[name=task]").val(response[0].task_name);
+      //console.log($("#update-form input[name=task]").val());
       $("#update-form input[name=deadline]").val(deadlineVal);
-      $("#update-form select[name=cotegory]").val(response[0].category_id);
-      $("#update-form select[name=stutas]").val(response[0].task_stutas);
-      console.log($("#update-form input[name=task]").val(response[0].task_name));
-    });
-  </script>
-  <script>
-        $("#update-task").on("click", async function (){
+      //console.log($("#update-form input[name=deadline]").val());
+      $("#update-form select[name=category]").val(response[0].category_id);
+      //console.log($("#update-form select[name=category]").val());
+      $("#update-form select[name=status]").val(response[0].task_status);
+     // console.log($("#update-form select[name=status]").val());
+      
+
+      $("#update-task").on("click", async function (){
           
-          const id = $("#update-form input[name=id]").val();
+          //const id = $("#update-form input[name=id]").val();
+          //console.log(id);
 
           console.log($("#update-form input[name=id]").val())
         const requestData = {
         task: $("#update-form input[name=task]").val(),
         deadline: $("#update-form input[name=deadline]").val(),
-        cotegory:  $("#update-form select[name=cotegory]").val(),
-        stutas: $("#update-form select[name=stutas]").val(),
+        category:  $("#update-form select[name=category]").val(),
+        status: $("#update-form select[name=status]").val(),
       };
-      const response = await httpUpdate("//" + window.location.host + `/api/update/${id}`);
-      requestData
+      const response = await httpUpdate("//" + window.location.host + `/api/update/${id}`, requestData);
       //window.location.reload();
     });
+    });
+  </script>
+  <script>
   </script>
 </body>
 </html>
