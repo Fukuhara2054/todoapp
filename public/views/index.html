@@ -228,11 +228,13 @@
         deadline: $("#create-form input[name=deadline]").val(),
         category: $("#create-form select[name=category]").val(),
       };
-      //
       const response = await httpPost(
         "//" + window.location.host + "/api/tasks",
         requestData
+        
       );
+      
+      
       window.location.reload();
     })
   </script>
@@ -275,12 +277,13 @@
   <script>
     $(document).on("click", ".update-button", async function (){
       const id = $(this).data("id");
-      const response = await httpGet("//" + window.location.host + `/api/items/${id}`);
+
+      const response = await httpGet("//" + window.location.host + `/api/get/${id}`);
       //ここが出力できない
-      console.log(response);
+      //console.log(response);
       //日付
       const date = new Date(response[0].deadline);
-      const year = date.getFullyear();
+      const year = date.getFullYear();
       const month = ("0" + (date.getMonth() + 1)).slice(-2);
       const day = ("0" + date.getDate()).slice(-2);
       const deadlineVal = `${year}-${month}-${day}`;
@@ -290,6 +293,24 @@
       $("#update-form input[name=deadline]").val(deadlineVal);
       $("#update-form select[name=cotegory]").val(response[0].category_id);
       $("#update-form select[name=stutas]").val(response[0].task_stutas);
+      console.log($("#update-form input[name=task]").val(response[0].task_name));
+    });
+  </script>
+  <script>
+        $("#update-task").on("click", async function (){
+          
+          const id = $("#update-form input[name=id]").val();
+
+          console.log($("#update-form input[name=id]").val())
+        const requestData = {
+        task: $("#update-form input[name=task]").val(),
+        deadline: $("#update-form input[name=deadline]").val(),
+        cotegory:  $("#update-form select[name=cotegory]").val(),
+        stutas: $("#update-form select[name=stutas]").val(),
+      };
+      const response = await httpUpdate("//" + window.location.host + `/api/update/${id}`);
+      requestData
+      //window.location.reload();
     });
   </script>
 </body>
