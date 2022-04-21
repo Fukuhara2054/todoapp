@@ -2,9 +2,15 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: hsl(197, 100%, 50%);
+.create-b {
+  padding-top: 50px;
+  display: flex;
+}
+.today {
+  /*display: none;*/
+}
+.todaytask {
+  padding-left: 40%;
 }
 .row {
   margin-top: 50px;

@@ -17,6 +17,7 @@ patchid = async function (id, body) {
       new Date(),
       id,
     ];
+    console.log(new Date());
     const [rows, fields] = await connection.query(sql, d);
     console.log(rows);
     return rows;

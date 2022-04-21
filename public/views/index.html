@@ -25,15 +25,22 @@
   </div>
 
   <h1>Todoアプリ</h1>
-  <button
+  <div class="create-b">
+    <!-- 今日までのタスクのみ表示-->
+    <input type="checkbox" class="btn-check today" id="btn-check-2"  autocomplete="off">
+    <label class="btn btn-danger" for="btn-check-2">今日までのタスク</label>
+  <div class="todaytask">
+    <button
     type="button"
-    class="btn btn-primary"
+    class="btn btn-primary "
     data-toggle="modal"
     data-target="#exampleModal"
   >
     + タスクを追加
   </button>
 
+  </div>
+</div>
   <!-- Modal -->
   <div
     class="modal fade"
@@ -206,11 +213,9 @@
     $(async function () {
       //jsonを叩いている
       const data = await httpGet("//" + window.location.host + "/api/items");
-      //日付フォーマットの指定
-      /*for(let key in date){
-        const now = new Date(date[key]);
-      }*/
 
+        let change = $(".today").prop('checked')
+        console.log(change);
 
         const list = data.map((item) => {
           //日付フォーマットの指定
@@ -220,7 +225,7 @@
         const date = now.getDate();
         let category_id = "";
         //カテゴリの種類によってリストに色をつける
-        console.log(item.category_id);
+        //console.log(item.category_id);
         switch(item.category_id){
           case 1:
           category_id = "a";
@@ -236,12 +241,10 @@
           break;
           default:
             console.log("不正な値です。");
-
-        }
-        //タスクの日付昇順表示機能
-
-
-        return `<li> 
+          }
+          //オンクリックでイベント入れてからこの処理をしていく
+          if(!change == true){
+            return `<li> 
           <span class="${category_id}" ></span>
           <div class="col-sm-8 task">
           <span style="font-size: 23px;"><b>${item.task_name}</b></span>
@@ -268,6 +271,11 @@
               削除
             </button>
           </li>`;
+          } else{
+            console.log("チェックは押されてない");
+          }
+
+        /*return */
       });
       $("ul#task-contents").append(list);
     });
