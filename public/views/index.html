@@ -185,6 +185,7 @@
     crossorigin="anonymous"
   ></script>
   <script>
+    //問題1
     $("#create-task").on("click", async function(){
       //
       const requestData = {
@@ -201,16 +202,26 @@
     })
   </script>
   <script>
-    
+    //問題2
     $(async function () {
       //jsonを叩いている
       const data = await httpGet("//" + window.location.host + "/api/items");
-      const list = data.map((item) => {
+      //日付フォーマットの指定
+      /*for(let key in date){
+        const now = new Date(date[key]);
+      }*/
+
+
+        const list = data.map((item) => {
+        const now = new Date(item.deadline);
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
         return `<li>
           <span class="b" ></span>
           <div class="col-sm-8 task">
-          <span style="font-size": 25px;>${item.task_name}</span>
-          <span style="font-size: 20px;">${item.deadline}</span>
+          <span style="font-size: 23px;"><b>${item.task_name}</b></span>
+          <span style="font-size: 17px;">${year}/${month}/${date}</span>
         </div>
           <button
             data-id=${item.id}
@@ -249,7 +260,7 @@
       const year = date.getFullYear();
       const month = ("0" + (date.getMonth() + 1)).slice(-2);
       const day = ("0" + date.getDate()).slice(-2);
-      const deadlineVal = `${year}-${month}-${day}`;
+      const deadlineVal = `${year}/${month}/${day}`;
       //初期値をセット
       //$("#update-form input[name=id]").val(response[0].id);
       //console.log($("#update-form input[name=id]").val());
