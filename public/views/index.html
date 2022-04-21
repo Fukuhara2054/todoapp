@@ -71,10 +71,10 @@
             <div  class="form-group">
               <label for="">カテゴリー</label>
               <select class="custom-select" name="category">
-                <option selected >勉強</option>
-                <option value="1">勉強</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="1" selected>生活</option>
+                <option value="2">勉強</option>
+                <option value="3">仕事</option>
+                <option value="4">趣味</option>
               </select>
             </div>
           </form>
@@ -213,12 +213,34 @@
 
 
         const list = data.map((item) => {
+          //日付フォーマットの指定
         const now = new Date(item.deadline);
         const year = now.getFullYear();
         const month = now.getMonth() + 1;
         const date = now.getDate();
-        return `<li>
-          <span class="b" ></span>
+        let category_id = "";
+        //カテゴリの種類によってリストに色をつける
+        console.log(item.category_id);
+        switch(item.category_id){
+          case 1:
+          category_id = "a";
+          break;
+          case 2:
+          category_id = "b";
+          break;
+          case 3:
+          category_id = "c";
+          break;
+          case 4:
+          category_id = "d";
+          break;
+          default:
+            console.log("不正な値です。");
+
+        }
+        
+        return `<li> 
+          <span class="${category_id}" ></span>
           <div class="col-sm-8 task">
           <span style="font-size: 23px;"><b>${item.task_name}</b></span>
           <span style="font-size: 17px;">${year}/${month}/${date}</span>
