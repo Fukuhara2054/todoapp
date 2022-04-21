@@ -164,43 +164,7 @@
     </div>
   </div>
   <!-- ここから削除のモーダル-->
-  <div
-    class="modal fade"
-    id="exampleModal3"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <label for="">犬の散歩</label>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-          >
-            キャンセル
-          </button>
-          <button type="button" class="btn btn-primary">更新</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <!-- Optional JavaScript -->
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -229,9 +193,7 @@
         category: $("#create-form select[name=category]").val(),
       };
       const response = await httpPost(
-        "//" + window.location.host + "/api/tasks",
-        requestData
-        
+        "//" + window.location.host + "/api/tasks",requestData
       );
       
       
@@ -261,7 +223,8 @@
             </button>
           <button
               
-              data-id=${item.task_name}
+              data-task=${item.task_name}
+              data-id=${item.id}
               type="button"
               class="btn btn-outline-danger col-sm-1 delete-button"
               data-toggle="modal"
@@ -288,7 +251,7 @@
       const day = ("0" + date.getDate()).slice(-2);
       const deadlineVal = `${year}-${month}-${day}`;
       //初期値をセット
-      $("#update-form input[name=id]").val(response[0].id);
+      //$("#update-form input[name=id]").val(response[0].id);
       //console.log($("#update-form input[name=id]").val());
       $("#update-form input[name=task]").val(response[0].task_name);
       //console.log($("#update-form input[name=task]").val());
@@ -301,11 +264,8 @@
       
 
       $("#update-task").on("click", async function (){
-          
-          //const id = $("#update-form input[name=id]").val();
-          //console.log(id);
 
-          console.log($("#update-form input[name=id]").val())
+          //console.log($("#update-form input[name=id]").val())
         const requestData = {
         task: $("#update-form input[name=task]").val(),
         deadline: $("#update-form input[name=deadline]").val(),
@@ -313,11 +273,21 @@
         status: $("#update-form select[name=status]").val(),
       };
       const response = await httpUpdate("//" + window.location.host + `/api/update/${id}`, requestData);
-      //window.location.reload();
+      window.location.reload();
     });
     });
   </script>
   <script>
+    $(document).on("click", ".delete-button", async function(){
+      const task = $(this).data("task");
+      if(confirm(`下記の内容を消去します\n ${task}`)){
+        const id = $(this).data("id");
+        const response = await httpDelete(
+          "//" + window.location.host + `/api/delete/${id}`
+        );
+      }
+      window.location.reload();
+    })
   </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ const items = require("../../src/items");
 const tasks = require("../../src/tasks/create.js");
 const get = require("../../src/tasks/get.js");
 const update = require("../../src/tasks/update.js");
+const deletetask = require("../../src/tasks/delete");
 var router = express.Router();
 
 /* 商品一覧を取得するルーティング */
@@ -26,5 +27,9 @@ router.patch("/update/:id", async function (req, res, next) {
   const patchid = await update.patchid(req.params.id, req.body);
   res.send(patchid);
 });
-
+//削除のルーティング
+router.delete("/delete/:id", async function (req, res, next) {
+  const deletetaskid = await deletetask.deletetask(req.params.id);
+  res.send(deletetaskid);
+});
 module.exports = router;
