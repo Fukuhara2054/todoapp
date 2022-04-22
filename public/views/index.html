@@ -212,9 +212,11 @@
     //問題2
     $(async function () {
       //jsonを叩いている
-      const data = await httpGet("//" + window.location.host + "/api/items");
 
-        let change = $(".today").prop('checked')
+      
+      const data = await httpGet("//" + window.location.host + "/api/items");
+        
+        let change = $('input[type=checkbox]').prop('checked')
         console.log(change);
 
         const list = data.map((item) => {
@@ -242,40 +244,35 @@
           default:
             console.log("不正な値です。");
           }
-          //オンクリックでイベント入れてからこの処理をしていく
-          if(!change == true){
-            return `<li> 
-          <span class="${category_id}" ></span>
-          <div class="col-sm-8 task">
-          <span style="font-size: 23px;"><b>${item.task_name}</b></span>
-          <span style="font-size: 17px;">${year}/${month}/${date}</span>
-        </div>
-          <button
-            data-id=${item.id}
-              type="button"
-              class="btn btn-outline-primary col-sm-1 update-button"
-              data-toggle="modal"
-              data-target="#exampleModal2"
-            >
-              更新
-            </button>
-          <button
-              
-              data-task=${item.task_name}
-              data-id=${item.id}
-              type="button"
-              class="btn btn-outline-danger col-sm-1 delete-button"
-              data-toggle="modal"
-              data-target="#exampleModal3"
-            >
-              削除
-            </button>
-          </li>`;
-          } else{
-            console.log("チェックは押されてない");
-          }
-
-        /*return */
+          //console.log(date1)
+          return  `<li> 
+                <span class="${category_id}" ></span>
+                <div class="col-sm-8 task">
+                <span style="font-size: 23px;"><b>${item.task_name}</b></span>
+                <span style="font-size: 17px;">${year}/${month}/${date}</span>
+              </div>
+                <button
+                  data-id=${item.id}
+                    type="button"
+                    class="btn btn-outline-primary col-sm-1 update-button"
+                    data-toggle="modal"
+                    data-target="#exampleModal2"
+                  >
+                    更新
+                  </button>
+                <button
+                    
+                    data-task=${item.task_name}
+                    data-id=${item.id}
+                    type="button"
+                    class="btn btn-outline-danger col-sm-1 delete-button"
+                    data-toggle="modal"
+                    data-target="#exampleModal3"
+                  >
+                    削除
+                  </button>
+                </li>`;
+        
       });
       $("ul#task-contents").append(list);
     });
@@ -316,7 +313,7 @@
         status: $("#update-form select[name=status]").val(),
       };
       const response = await httpUpdate("//" + window.location.host + `/api/update/${id}`, requestData);
-      window.location.reload();
+      "window.location.reload();"
     });
     });
   </script>
@@ -331,6 +328,69 @@
       }
       window.location.reload();
     })
+  </script>
+  <script>
+    //今日のみのタスク表示する実装
+    $(".today").change(async function(){
+      console.log($(".today").prop("checked"))
+      if(($(".today").prop("checked")) == true){
+        $("#task-contents").empty();
+        const data = await httpGet("//" + window.location.host + "/api/todayitem");
+        const list = data.map((item) => {
+        const now = new Date(item.deadline);
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+
+        // タグの色付けの機能実装
+        let category_id = "";
+        switch(item.category_id){
+          case 1:
+          category_id = "a";
+          break;
+          case 2:
+          category_id = "b";
+          break;
+          case 3:
+          category_id = "c";
+          break;
+          case 4:
+          category_id = "d";
+          break;
+          default:
+            console.log("不正な値です。");
+          }
+          return  `<li> 
+                <span class="${category_id}" ></span>
+                <div class="col-sm-8 task">
+                <span style="font-size: 23px;"><b>${item.task_name}</b></span>
+                <span style="font-size: 17px;">${year}/${month}/${date}</span>
+              </div>
+                <button
+                  data-id=${item.id}
+                    type="button"
+                    class="btn btn-outline-primary col-sm-1 update-button"
+                    data-toggle="modal"
+                    data-target="#exampleModal2"
+                  >
+                    更新
+                  </button>
+                <button
+                    
+                    data-task=${item.task_name}
+                    data-id=${item.id}
+                    type="button"
+                    class="btn btn-outline-danger col-sm-1 delete-button"
+                    data-toggle="modal"
+                    data-target="#exampleModal3"
+                  >
+                    削除
+                  </button>
+                </li>`;
+      });
+      $("ul#task-contents").append(list);
+      }
+    });
   </script>
 </body>
 </html>

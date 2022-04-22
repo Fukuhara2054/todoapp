@@ -18,6 +18,7 @@ router.get("/get/:id", async function (req, res, next) {
   res.send(item);
 });
 //``新規登録取得のルーティング
+//なぜエンドパスがタスクなのか
 router.post("/tasks", function (req, res, next) {
   const postTasks = tasks.postTasks(req.body);
   res.send(postTasks);
@@ -31,5 +32,10 @@ router.patch("/update/:id", async function (req, res, next) {
 router.delete("/delete/:id", async function (req, res, next) {
   const deletetaskid = await deletetask.deletetask(req.params.id);
   res.send(deletetaskid);
+});
+//今日のタスクのみ取得するルーティング
+router.get("/todayitem", async function (req, res, next) {
+  const today = await items.today(req.params.id);
+  res.send(today);
 });
 module.exports = router;

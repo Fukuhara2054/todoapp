@@ -7,7 +7,7 @@ body {
   display: flex;
 }
 .today {
-  /*display: none;*/
+  display: none;
 }
 .todaytask {
   padding-left: 40%;
