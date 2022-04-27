@@ -223,7 +223,7 @@
         const tomonth = today.getMonth() + 1;
         const todate = today.getDate();
 
-        let kyou = toyear + "/" + tomonth + "/" + todate;
+        let kyou = toyear + "-" + tomonth + "-" + todate;
 
         const list = data.map((item) => {
           //日付フォーマットの指定
@@ -231,7 +231,7 @@
         const year = now.getFullYear();
         const month = now.getMonth() + 1;
         const date = now.getDate();
-        let line = year + "/" + month + "/" + date;
+        let line = year + "-" + month + "-" + date;
         let category_id = "";
         //カテゴリの種類によってリストに色をつける
         //console.log(item.category_id);
@@ -255,13 +255,13 @@
           //タスクの期限が切れているものに警告
           console.log(kyou)
           console.log(line)
-          if(kyou > line){
+          if(today > now ){
             return  `<li> 
                 <span class="${category_id}" ></span>
                 <div class="col-sm-8 task">
                 <span style="font-size: 23px;"><b>${item.task_name}</b></span>
                 <span style="font-size: 14px;">期限が切れてます。</span>
-                <span style="font-size: 17px;">${year}/${month}/${date}</span>
+                <span style="font-size: 17px;">${year}+"年"+${month}+"月"+${date}+ "日"</span>
               </div>
                 <button
                   data-id=${item.id}
@@ -289,7 +289,7 @@
                 <span class="${category_id}" ></span>
                 <div class="col-sm-8 task">
                 <span style="font-size: 23px;"><b>${item.task_name}</b></span>
-                <span style="font-size: 17px;">${year}/${month}/${date}</span>
+                <span style="font-size: 17px;">${year}年${month}月${date}日</span>
               </div>
                 <button
                   data-id=${item.id}
