@@ -218,7 +218,8 @@
         
         let change = $('input[type=checkbox]').prop('checked')
         console.log(change);
-        const today = new Date();
+        let today = new Date();
+        const today1 = new Date(today.getFullYear(),today.getMonth() , today.getDate(),0,0,0);
         const toyear = today.getFullYear();
         const tomonth = today.getMonth() + 1;
         const todate = today.getDate();
@@ -253,15 +254,15 @@
           }
           //console.log(date1)
           //タスクの期限が切れているものに警告
-          console.log(kyou)
-          console.log(line)
-          if(today > now ){
+          console.log(today1)
+          console.log(now)
+          if(today1 > now ){
             return  `<li> 
                 <span class="${category_id}" ></span>
                 <div class="col-sm-8 task">
                 <span style="font-size: 23px;"><b>${item.task_name}</b></span>
                 <span style="font-size: 14px;">期限が切れてます。</span>
-                <span style="font-size: 17px;">${year}+"年"+${month}+"月"+${date}+ "日"</span>
+                <span style="font-size: 17px;">${year}年${month}月${date}日</span>
               </div>
                 <button
                   data-id=${item.id}
@@ -406,7 +407,7 @@
                 <span class="${category_id}" ></span>
                 <div class="col-sm-8 task">
                 <span style="font-size: 23px;"><b>${item.task_name}</b></span>
-                <span style="font-size: 17px;">${year}/${month}/${date}</span>
+                <span style="font-size: 17px;">${year}年${month}月${date}日</span>
               </div>
                 <button
                   data-id=${item.id}
